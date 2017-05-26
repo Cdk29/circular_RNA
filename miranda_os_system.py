@@ -1,11 +1,9 @@
 import re
 import os
 
-
-#miranda for the circular RNA report outpout
-
-
-
+#this file provide some extra functionnality for control quality for the output report of the circular RNA design process
+#here this function allow to trim human microRNAs from the microRNAs of other species, in the file mature.fa, download on microRNA.org
+#this microRNAs are then test for alignement on the circular RNA output by the design process 
 
 
 def mature_reader(file_name):
@@ -47,15 +45,10 @@ x="miranda mature.fa hsa_circ_0007874 -noenergy -strict -sc 160 > output_miranda
 
 
 
-os.system(x)   #terminal is "froze" the time to execute the query, thanksfully 
+os.system(x)   #the terminal is "froze" during the query, thanksfully 
 
 
-filin=open("mature.fa", "r")
 
-read=filin.readlines()
-
-for ligne in read :
-    print "line", ligne
     
 
 
