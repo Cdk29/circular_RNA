@@ -41,6 +41,11 @@ def mature_reader(file_name):
 
 def miranda_reader(output_miranda):
     #the goal of this function is to read the miranda output, and grep the alignements of microRNAs on sequence (binding site or whole circRNA sequence)
+    #the functio return a list of dictionnary, where dictionnary are on the following form :
+    # {'Hit': "   Query:    3' ugcUGCGA-GGGACGACGGUCCa 5'\n                   ::|:| |:|||:||||||| \n   Ref:      5' agaGTGTTGCTCTGTTGCCAGGc 3'\n",
+    #'Mir_name': 'hsa-miR-8073',
+    #'Score': '166.000000'}]
+    
     
     human_microRNAs=open(output_miranda, 'r')
     hits = []
@@ -97,7 +102,7 @@ def miranda_reader(output_miranda):
 
 def selecting_best_hit(list_of_dictionnary, number_of_best_hits):
 
-    best_hits=[]   #a list of dictionnary of all the better miRanda hits, meaning the alignement with the best score
+    best_hits=[]   #a list of dictionnary of all the better miRanda hits, meaning the alignements with the best score
     best_score=0
     position_best_mir=0
     
