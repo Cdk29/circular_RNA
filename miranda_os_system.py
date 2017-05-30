@@ -40,8 +40,8 @@ def mature_reader(file_name):
 
 
 def miranda_reader(output_miranda):
-    #the goal of this function is to read the miranda output, and grep the alignements of microRNAs on sequence (binding site or whole circRNA sequence)
-    #the functio return a list of dictionnary, where dictionnary are on the following form :
+    #the goal of this function is grep the alignements of microRNAs on sequence (binding site or whole circRNA sequence)
+    #the function return a list of dictionnary, where dictionnary are on the following form :
     # {'Hit': "   Query:    3' ugcUGCGA-GGGACGACGGUCCa 5'\n                   ::|:| |:|||:||||||| \n   Ref:      5' agaGTGTTGCTCTGTTGCCAGGc 3'\n",
     #'Mir_name': 'hsa-miR-8073',
     #'Score': '166.000000'}]
@@ -103,19 +103,21 @@ def miranda_reader(output_miranda):
 def selecting_best_hit(list_of_dictionnary, number_of_best_hits):
 
     best_hits=[]   #a list of dictionnary of all the better miRanda hits, meaning the alignements with the best score
-    best_score=0
-    position_best_mir=0
-    
-    for mir_name, x in zip(list_of_dictionnary, xrange(0, len(list_of_dictionnary))):
-    
-        if mir_name["Score"] >= best_score :
-            best_score = mir_name["Score"]
-            position_best_mir=x
     
     
-    new_list_of_dictionnary=[]
-    
-    for hits in number_of_best_hits:
+    for hits in xrange(0, number_of_best_hits):
+        best_score=0
+        position_best_mir=0
+        for mir_name, x in zip(list_of_dictionnary, xrange(0, len(list_of_dictionnary))):
+        
+            if mir_name["Score"] >= best_score :
+                best_score = mir_name["Score"]
+                position_best_mir=x
+        
+        
+        new_list_of_dictionnary=[]
+        
+
         for x in xrange(0, len(list_of_dictionnary)):
             if x==position_best_mir :
                 
@@ -196,17 +198,11 @@ os.system(x)   #the terminal is "froze" during the query, thanksfully
 
 
 
-miranda_reader("output_miranda")
+list_of_dictionnary=miranda_reader("output_miranda")
 
 
 
-
-
-
-
-
-
-
+best_hits_test=selecting_best_hit(list_of_dictionnary, 3)
 
 
 
