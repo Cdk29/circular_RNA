@@ -140,14 +140,7 @@ def selecting_best_hit(list_of_dictionnary, number_of_best_hits):
 
 def latex_output_miranda(list_of_dictionnary):
     
-    string="""\\documentclass{article}
-\\usepackage[utf8]{inputenc}
-\\title{How to Structure a LaTeX Document}
-\\author{Andrew Roberts}
-
-\\begin{document}
-
-\\maketitle"""
+    string=""
     string+="\\section{Miranda Alignements}" 
     string+="This section is the report of the best alignements among all the matures human micro-RNAs against the bindings site of micro-RNA on the sponge, and against the whole sequence of the circular RNA produced by the executable." + "\\newline "
     string+="The purpose of this is to check if wether or not the best alignemenents are perform by the micro-RNAs given as arguments to the circular RNA design"
@@ -186,11 +179,11 @@ def latex_output_miranda(list_of_dictionnary):
                 holder = "\n" + str(keys) + " : of the alignement :" + str(dictionnary[keys])  + "\n"
                 string+=holder
         
-    print "string", string
+    
     string+="\\end{document}"
     
     
-    tex_file = "/tmp/martin-was-here.tex"
+    tex_file = "design_report.tex"
     
     fichier=open(tex_file, "w")
     fichier.write(string)
