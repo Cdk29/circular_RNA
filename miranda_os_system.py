@@ -180,12 +180,31 @@ def latex_output_miranda(list_of_dictionnary):
                 string+=holder
         
     
-    string+="\\end{document}"
     
     
     tex_file = "design_report.tex"
     
-    fichier=open(tex_file, "w")
+    fichier=open(tex_file, "a")
+    fichier.write(string)
+    fichier.close()
+    
+ 
+
+    return
+
+
+
+def latex_report_pdf():
+    
+    #this function use the web service provide by Martin Scharm, called Texpile, available here github.com/binfalse/TEXPILE
+    #here the report in latex is rewritte in pdf with the return of texpile
+
+    string="\\end{document}"
+        
+    
+    tex_file = "design_report.tex"
+    
+    fichier=open(tex_file, "a")
     fichier.write(string)
     fichier.close()
     
@@ -193,14 +212,10 @@ def latex_output_miranda(list_of_dictionnary):
     r = requests.post('http://texpile.bio.informatik.uni-rostock.de', files={'project': open(tex_file, 'rb')})
     with open(tex_file + ".pdf", 'wb') as result:
         result.write(r.content)
+
+   
     
-    
-
-    return
-
-
-
-
+    return 
 
 
 
@@ -211,13 +226,13 @@ os.system(x)   #the terminal is "froze" during the query, thanksfully
 
 
 
+
+
+
+
+
 list_of_dictionnary=miranda_reader("output_miranda")
-
-
 best_hits_test=selecting_best_hit(list_of_dictionnary, 3)
-
-
-
 latex_output_miranda(best_hits_test)
 
 
