@@ -1,6 +1,8 @@
 import re
 import os
 
+import requests
+
 #this file provide some extra functionnality for control quality for the output report of the circular RNA design process
 #here this function allow to trim human microRNAs from the microRNAs of other species, in the file mature.fa, download on microRNA.org
 #this microRNAs are then test for alignement on the circular RNA output by the design process 
@@ -138,8 +140,15 @@ def selecting_best_hit(list_of_dictionnary, number_of_best_hits):
 
 def latex_output_miranda(list_of_dictionnary):
     
-    string=""
-    string="\section{Miranda Alignements}" 
+    string="""\\documentclass{article}
+\\usepackage[utf8]{inputenc}
+\\title{How to Structure a LaTeX Document}
+\\author{Andrew Roberts}
+
+\\begin{document}
+
+\\maketitle"""
+    string+="\\section{Miranda Alignements}" 
     string+="This section is the report of the best alignements among all the matures human micro-RNAs against the bindings site of micro-RNA on the sponge, and against the whole sequence of the circular RNA produced by the executable." + "\\newline "
     string+="The purpose of this is to check if wether or not the best alignemenents are perform by the micro-RNAs given as arguments to the circular RNA design"
     string+=", and to ensure that a binding site for another micro-RNAs has not been create by mistake somewhere on the circular RNAs sequence during the design process." + "\\newline "
@@ -178,10 +187,21 @@ def latex_output_miranda(list_of_dictionnary):
                 string+=holder
         
     print "string", string
+    string+="\\end{document}"
     
-    fichier=open("design_report.tex", "a")
+    
+    tex_file = "/tmp/martin-was-here.tex"
+    
+    fichier=open(tex_file, "w")
     fichier.write(string)
     fichier.close()
+    
+    
+    r = requests.post('http://texpile.bio.informatik.uni-rostock.de', files={'project': open(tex_file, 'rb')})
+    with open(tex_file + ".pdf", 'wb') as result:
+        result.write(r.content)
+    
+    
 
     return
 
@@ -201,14 +221,11 @@ os.system(x)   #the terminal is "froze" during the query, thanksfully
 list_of_dictionnary=miranda_reader("output_miranda")
 
 
-
 best_hits_test=selecting_best_hit(list_of_dictionnary, 3)
 
 
 
-
-
-
+latex_output_miranda(best_hits_test)
 
 
 
