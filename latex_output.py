@@ -1,6 +1,37 @@
 import requests
 
 
+def latex_report_init():
+    #this function initialize the latex report of the circular RNA design process
+    
+    
+    string="""   
+    \\documentclass{article}
+    \\usepackage[utf8]{inputenc}
+    \\usepackage{seqsplit}
+    \\title{Circular RNA Design Report}
+    \\author{}
+    
+    \\begin{document}
+
+    \\maketitle
+    \\\end{document}
+    """
+
+    print string   
+    
+    tex_file = "design_report.tex"
+    
+    
+    fichier=open(tex_file, "w")
+    fichier.write(string)
+    fichier.close()
+    
+    
+    return
+
+
+latex_report_init()
 
 
 
