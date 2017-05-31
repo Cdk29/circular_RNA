@@ -1,8 +1,5 @@
-import re
-import os
 
-
-
+# miranda human_microRNAs.fasta hsa_circ_0007874 -strict > output_miranda_energy 
 
 def miranda_energy_reader(output_miranda_energy):
     #the goal of this function is grep the alignements of microRNAs on sequence from the circular RNA, based on their energy
@@ -46,6 +43,7 @@ def miranda_energy_reader(output_miranda_energy):
         
         energy_holder=hit[4].split(" ")
         energy_holder=energy_holder[5]
+        energy_holder=float(energy_holder)
 
         mir_name={}
         mir_name["Mir_name"]=mir_name_holder
@@ -69,7 +67,7 @@ def selecting_best_hit_energy(list_of_dictionnary, number_of_best_hits):
         lowest_energy=0
         position_best_mir=0
         for mir_name, x in zip(list_of_dictionnary, xrange(0, len(list_of_dictionnary))):
-        
+
             if mir_name["Energy"] < lowest_energy :
                 lowest_energy = mir_name["Energy"]
                 position_best_mir=x
@@ -91,17 +89,6 @@ def selecting_best_hit_energy(list_of_dictionnary, number_of_best_hits):
         
     return best_hits
 
-
-
-
-
-
-
-
-list_of_dictionnary=miranda_energy_reader("output_miranda_energy")
-
-
-selecting_best_hit_energy(list_of_dictionnary, 3)
 
 
 
