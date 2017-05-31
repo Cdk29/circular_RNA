@@ -46,7 +46,6 @@ def miranda_energy_reader(output_miranda_energy):
         
         energy_holder=hit[4].split(" ")
         energy_holder=energy_holder[5]
-        print energy_holder
 
         mir_name={}
         mir_name["Mir_name"]=mir_name_holder
@@ -60,21 +59,49 @@ def miranda_energy_reader(output_miranda_energy):
     return list_of_dictionnary
 
 
+
+def selecting_best_hit_energy(list_of_dictionnary, number_of_best_hits):
+
+    best_hits=[]   #a list of dictionnary of all the better miRanda hits, meaning the alignements with the best score
+    
+    
+    for hits in xrange(0, number_of_best_hits):
+        lowest_energy=0
+        position_best_mir=0
+        for mir_name, x in zip(list_of_dictionnary, xrange(0, len(list_of_dictionnary))):
+        
+            if mir_name["Energy"] < lowest_energy :
+                lowest_energy = mir_name["Energy"]
+                position_best_mir=x
+        
+        
+        new_list_of_dictionnary=[]
+        
+
+        for x in xrange(0, len(list_of_dictionnary)):
+            if x==position_best_mir :
+                
+                best_hits.append(list_of_dictionnary[x])
+                continue
+                
+            new_list_of_dictionnary.append(list_of_dictionnary[x]) 
+            
+        list_of_dictionnary=new_list_of_dictionnary
+    
+        
+    return best_hits
+
+
+
+
+
+
+
+
 list_of_dictionnary=miranda_energy_reader("output_miranda_energy")
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+selecting_best_hit_energy(list_of_dictionnary, 3)
 
 
 

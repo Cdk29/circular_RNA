@@ -102,7 +102,7 @@ def miranda_reader(output_miranda):
 
 
 
-def selecting_best_hit(list_of_dictionnary, number_of_best_hits):
+def selecting_best_hit_score(list_of_dictionnary, number_of_best_hits):
 
     best_hits=[]   #a list of dictionnary of all the better miRanda hits, meaning the alignements with the best score
     
