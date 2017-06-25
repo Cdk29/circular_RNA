@@ -26,7 +26,7 @@ def mature_reader(file_name):
             interest=False
         
         if re.search("Homo", ligne):
-            print "ok"
+
             interest=True
             human_microRNAs.append(ligne)
             
@@ -138,9 +138,22 @@ def selecting_best_hit_score(list_of_dictionnary, number_of_best_hits):
 
 
 
-x="miranda human_microRNAs.fasta hsa_circ_0007874 -noenergy -strict -sc 160 > output_miranda"
+#x="miranda human_microRNAs.fasta hsa_circ_0007874 -noenergy -strict -sc 160 > output_miranda"
 
-os.system(x)   #the terminal is "froze" during the query, thanksfully 
+#os.system(x) 
+
+
+
+#list_of_dictionnary=miranda_score_reader("output_miranda")
+#list_of_dictionnary=selecting_best_hit_score(list_of_dictionnary, 3)
+
+
+
+
+
+
+
+
 
 
 

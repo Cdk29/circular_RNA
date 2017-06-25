@@ -63,20 +63,13 @@ def RNAfold_grep():
 
 
 
-circular_design_output="test_file_for_vienna"
+#circular_design_output="test_file_for_vienna"
 
 
-ViennaRNA_RNAfold(circular_design_output)
+#ViennaRNA_RNAfold(circular_design_output)
 
 
-
-
-best_circ, best_score, best_seq = RNAfold_grep()
-
-
-
-RNAfold_latex_output(best_circ, best_score, best_seq)
-
+#best_circ, best_score, best_seq = RNAfold_grep()
 
 
 

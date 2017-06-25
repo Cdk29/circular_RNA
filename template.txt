@@ -1,0 +1,194 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage[utf8]{inputenc}
+\bibliographystyle{unsrt}
+\usepackage[margin=2cm, right=2.5cm, left=2.5cm]{geometry}
+\renewcommand{\baselinestretch}{1.5} 
+%\usepackage{showframe} %use the margin parameters
+
+
+\usepackage{graphics}
+\usepackage{float}
+\usepackage{times}
+\usepackage{color}
+\usepackage{lipsum}
+\usepackage{tikz}
+\usepackage{titletoc}
+\usepackage{calc}
+\usepackage[]{titlesec} 
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage[some]{background}
+\usepackage{seqsplit}
+
+
+
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{shadows.blur}
+
+
+\definecolor{titlepagecolor}{cmyk}{1,.60,0,.40}
+
+\definecolor{yourcolor2}{HTML}{086A87}
+\definecolor{yourcolor}{cmyk}{1,.60,0,.40}
+
+
+\titlespacing*{\chapter}{0pt}{-30pt}{10pt}{}  %gauche %haut de page %chapter-box
+
+
+
+\colorlet{chpnumbercolor}{black}
+\makeatletter
+\let\oldl@chapter\l@chapter
+\def\l@chapter#1#2{\oldl@chapter{#1}{\textcolor{chpnumbercolor}{#2}}}
+\let\old@dottedcontentsline\@dottedtocline
+\def\@dottedtocline#1#2#3#4#5{%
+	\old@dottedcontentsline{#1}{#2}{#3}{#4}{{\textcolor{chpnumbercolor}{#5}}}}
+\makeatother
+
+
+
+
+
+\titleformat{\chapter}[display]
+{\normalfont\color{yourcolor2}}
+{\filleft\Huge\sffamily\bfseries\chaptertitlename\hspace*{2mm}%  %chapter/number distance
+	\begin{tikzpicture}[baseline={([yshift=-.6ex]current bounding box.center)}]
+	\node[fill=yourcolor2,rectangle,text=white] {\thechapter};
+	\end{tikzpicture}}
+{1ex}
+{\titlerule[1.5pt]\vspace*{1ex}\huge\sffamily\itshape}    % epaisseur de la ligne et distance ligne-chapter
+[]
+
+
+
+
+
+\titleformat{name=\chapter,numberless}[display]
+{\normalfont\color{yourcolor2}}
+{}
+{1ex}
+{\vspace*{5ex}\huge\sffamily\itshape}
+[]
+
+
+
+
+
+\newcommand{\printmyminitoc}{          %command to print the acutal minitoc
+	\noindent\hspace{+0cm}              %controle de la box sommaire   
+	\colorlet{chpnumbercolor}{white}%
+	\begin{tikzpicture}
+	\node[rounded corners,align=left,fill=yourcolor2, blur shadow={shadow blur steps=5}, inner sep=5mm]{%
+		\color{white}%
+		\begin{minipage}{8cm}%minipage trick
+		\printcontents[chapters]{}{1}{}
+		\end{minipage}};
+	\end{tikzpicture}}
+
+
+
+
+
+\begin{document}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%title area
+	
+	
+	\backgroundsetup{
+		scale=1,
+		angle=0,
+		opacity=1,
+		contents={\begin{tikzpicture}[remember picture,overlay]
+			\path [fill=white] (current page.west)rectangle (current page.north east);
+			\draw [color=yourcolor, very thick] (5,0)--(5,0.48\paperheight); 
+			\draw [color=yourcolor, very thick] (5,0)--(9.5,0\paperwidth);  %xy  and %xy, relative coordonnees
+			\draw [color=yourcolor, very thick] (5,0)--(-8,0\paperwidth);  %xy  %xy
+			\draw [opacity=0.6, color=yourcolor, line width=9pt] (5,25) circle [radius=12];
+			\draw [opacity=0.4, color=gray, line width=15pt] (11,11) circle [radius=4];
+			\draw [opacity=0.4, color=yourcolor, line width=5pt] (9.6,15) circle [radius=5.9];
+			\draw [opacity=0.6, color=yourcolor, line width=10pt] (11,7) circle [radius=3];
+			\draw [opacity=0.4, color=yourcolor, line width=5pt] (11,2.8) circle [radius=1.4];			
+			\end{tikzpicture}}}
+	
+	\makeatletter                   
+	\def\printauthor{%                  
+		{\large \@author}}          
+	\makeatother
+	
+\author{%
+	\begin{flushright}
+	Etienne Rolland\\Master of Molecular and Cellular Biology\\\vspace{5pt} \small{etienne.rolland.cdk@gmail.com}
+	\end{flushright}
+}
+	
+	\begin{titlepage}
+		\BgThispage
+		\vspace*{0.1\textheight}
+		\noindent
+		\textcolor{yourcolor}{\Huge{Circular RNA \\ \newline design  \\ \newline report }}
+		
+		\vspace*{8cm}\par
+		
+		\noindent
+		\begin{minipage}{0.32\linewidth}
+			\begin{flushright}
+				\printauthor
+			\end{flushright}
+		\end{minipage} \hspace{15pt}
+		%
+		\begin{minipage}{0.05\linewidth}       %move the abstract
+			\rule{1pt}{225pt}                   %la barre, epaisseur et longueur
+		\end{minipage} \hspace{-10pt}
+		%
+		\begin{minipage}{0.60\linewidth}
+			\vspace{5pt}
+			\begin{abstract} 
+				Circular RNAs have been proved to be a large class of post-transcriptional regulators, decoying microRNAs from their original targets \cite{mir7}. This documents is a output report of a script designing such a circular sponge against microRNAs passed as arguments, the goal being to use this circular sponge to upregulate genes originally targeted by those \-microRNAs. This script is the final step of a workflow relying on the TriplexRNA database \cite{triplex} to identified those microRNAs to be targeted, but can be also used alone.
+				
+				
+			\end{abstract}
+		\end{minipage}
+	\end{titlepage}
+	
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	
+	
+	
+	
+	%\tableofcontents
+	\chapter{Some details about the design}
+	\startcontents[chapters]
+	\printmyminitoc %print minitoc
+	
+	\section{Distance of collaboration}
+
+	There is experimental evidences of microRNA cooperativity in the post-transcriptional repression of the gene expression level when their seeds are in close proximity [13-35 nt] \cite{distance}. The design of the seed use by default the 17 nt distance, since the 13 nts distance, even if sufficient to enhance the repression, was less effective than the 17 nt distance. No significant statistical differences was found for outer distance compare to the 17 nt distance. However, this distance use by the script is adjustable in the eventuality of new scientific evidences, using the -d option.
+	
+	\section{U-rich design}
+
+    The micro-RNA binding site with hight local content of A and U perform the best, over any other variable or predicator \cite{Urich}. This is probably correlated to binding site accessibility, and to take advantage of this feature, and to reduce the potential to form a self-interacting secondary structure on the localisation of the microRNA binding site. A cognate problem is that some protein target and bind some AU rich sequence [known as AREs] \cite{AREs}, however, since this sequences require some A \cite{AREs}, the safer option is to specify a U in the sequence when no specific other nucleotides for complementarity is required.
+    
+
+	\section{Binding site}
+
+	The design of the binding site rely on features which algorithms of microRNAs binding site prediction are looking for in sequences and highlight as biologically relevant. For example, Target Scan reward a A on the first position for scoring a potential microRNAs binding site \cite{Aanchor}.
+	
+	The rules used by the circular RNA design script to design a binding site are the following :
+	\begin{itemize}
+		\item a A is systematically put in first position of the binding site \cite{Aanchor}. 
+		\item the seed (2-8nt) is a build by inserting complementary nucleotide to the microRNAs', forming an 8-mer site. See \cite{Urich, site} for further details and representation.
+		\item a A is put in the ninth position \cite{Aanchor}.
+		\item the 12th from 10th nucleotides are not complementary to the microRNAs' in order to avoid any Ago2 mediated cleavage of the circular RNA. This nucleotide are U, or A if not possible.
+		\item the nucleotides from 13 to 16 (include, so four in total) are complementary to the \-microRNAs'.
+		The reason is that Watson-Crick pairing to four contiguous nucleotides produce pairing in 3' and that most downregulation is associated to this pairing if it start at the 13th position \cite{site}.
+		
+	\end{itemize}
+
+	\section{Clusters}
+	The binding sites for one microRNA are organized in cluster by the design script, considering the observation that Ago2 shuttles between adjacent target and then that neighboring sites could cooperate to retain the Ago2-miRNA complex. \cite{cluster}.
+	
+	The cluster are wrote from 3' to 5' to make comparaision with microRNAs sequence easier. The clusters are the following :

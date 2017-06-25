@@ -1,0 +1,8 @@
+	\chapter{Quality control}
+	\startcontents[chapters]
+	\printmyminitoc %print minitoc
+	\newline
+
+	In this section are detailed some quality control. A alignement is perform againt all human microRNAs using miRanda \cite{Miranda} to check if whether or not the best alignement is performed by the microRNA passed as argument. If not, please reuse the design script using the -q option. This option allow the user to specify a binding site for the microRNA, and recreate a circular RNA and redo the quality check with this sequence. The fact that another microRNA can bind better the binding site is mostly cause of the G:U wobble between the microRNA and the circular RNA. In that case, the most relevant modification is to substituate this U by A \cite{Urich}.
+
+
