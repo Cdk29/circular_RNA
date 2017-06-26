@@ -190,7 +190,7 @@ def latex_report_pdf():
 
 
     # send the project to TEXPILE
-    r = requests.post('http://texpile.bio.informatik.uni-rostock.de', files={'project': open(tmp.name, 'rb')}, data={"filename": tex_file})
+    r = requests.post('https://texpile.bio.informatik.uni-rostock.de', files={'project': open(tmp.name, 'rb')}, data={"filename": tex_file})
 
     
     
