@@ -1,4 +1,3 @@
-import RNA
 import os
 
 
