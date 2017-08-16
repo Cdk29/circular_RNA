@@ -190,14 +190,13 @@ def seed_site_distance(micro_RNA_sequence, sequence):
     
 		global distance
 
-    seed_site_distance=len(micro_RNA_sequence[1:len(micro_RNA_sequence)])
+		seed_site_distance=len(micro_RNA_sequence[1:len(micro_RNA_sequence)])
     
-    if seed_site_distance < distance :
-        while seed_site_distance != distance:
-            sequence=sequence+"X"
-            seed_site_distance=seed_site_distance+1
-            
-    return sequence
+		if seed_site_distance < distance :
+				while seed_site_distance != distance:
+						sequence=sequence+"X"
+						seed_site_distance=seed_site_distance+1
+		return sequence
 
 
 def poly_U_liker(sequence):
