@@ -188,15 +188,15 @@ def seed_site_distance(micro_RNA_sequence, sequence):
     # to the figure 2.B from Saetrom et al, 2007
     # to get a good comprhension of the structure of the separation, you can refer to the pdf output or fig 2.A from the same article
     
-		global distance
+    global distance
 
-		seed_site_distance=len(micro_RNA_sequence[1:len(micro_RNA_sequence)])
-    
-		if seed_site_distance < distance :
-				while seed_site_distance != distance:
-						sequence=sequence+"X"
-						seed_site_distance=seed_site_distance+1
-		return sequence
+    seed_site_distance=len(micro_RNA_sequence[1:len(micro_RNA_sequence)])
+
+    if seed_site_distance < distance :
+        while seed_site_distance != distance:
+            sequence=sequence+"X"
+            seed_site_distance=seed_site_distance+1
+    return sequence
 
 
 def poly_U_liker(sequence):
@@ -269,6 +269,7 @@ def get_cli(argv):
     global priority  
     global size
     global list_of_sequence
+    global distance
 
     try:
         opts, args = getopt.getopt(argv, "hl:p:s:q:d:", ['help', 'list_of_microRNAs=', 'priority=', 'size=', 'list_of_sequence=', 'distance=' ])
@@ -294,7 +295,7 @@ def get_cli(argv):
             list_of_sequence = arg
         elif opt in ('-d', '--distance='):
             distance = int(arg)
-            
+
     # check wether or not all mandatory parameters have been provided
     if not os.path.isfile(list_of_microRNAs) and os.path.isfile(priority) :
         print_help()
