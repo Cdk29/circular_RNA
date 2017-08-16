@@ -188,6 +188,8 @@ def seed_site_distance(micro_RNA_sequence, sequence):
     # to the figure 2.B from Saetrom et al, 2007
     # to get a good comprhension of the structure of the separation, you can refer to the pdf output or fig 2.A from the same article
     
+		global distance
+
     seed_site_distance=len(micro_RNA_sequence[1:len(micro_RNA_sequence)])
     
     if seed_site_distance < distance :
@@ -292,7 +294,7 @@ def get_cli(argv):
         elif opt in ('-q', '--list_of_sequence='):
             list_of_sequence = arg
         elif opt in ('-d', '--distance='):
-            list_of_sequence = int(arg)
+            distance = int(arg)
             
     # check wether or not all mandatory parameters have been provided
     if not os.path.isfile(list_of_microRNAs) and os.path.isfile(priority) :
@@ -456,7 +458,7 @@ if __name__ == '__main__':
     latex_elong()
     RNAfold_latex_output(best_circ, best_score, best_seq)
     
-    #mature_reader("mature.fa")      #output human_microRNAs.fasta
+    mature_reader("mature.fa")      #output human_microRNAs.fasta
     
     
     
