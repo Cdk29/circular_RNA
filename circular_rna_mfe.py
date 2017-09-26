@@ -10,7 +10,7 @@ import os
 def ViennaRNA_RNAfold(circular_design_output):
     #this function take the output of the circularRNA design amd
     
-    print "RNAfold is running on the output of the circular RNA design script"
+    #print "RNAfold is running on the output of the circular RNA design script"
     
     command="RNAfold --circ " + circular_design_output + " > outputvienna"
     os.system(command)

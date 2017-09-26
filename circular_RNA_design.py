@@ -330,10 +330,10 @@ def circular_construction(priorities, set_of_mir_sequence):
             if current_size>size :
                 
                 return
-            
+
             else :
-                
-                if len(override)>=1 and override[x]>=10:
+
+                if len(override)>=1 and len(override[x])>=10:
                     
                     list_of_cluster[x]+=override[x]
                 
@@ -391,7 +391,15 @@ if __name__ == '__main__':
             line=line.replace("\n", "")
             line=line.replace(" ", "")
             override.append(line)
-            
+    
+        if not len(override)==len(priorities):
+
+            while len(override)!=len(priorities):
+
+                line=""
+                override.append(line)
+
+        
     list_of_cluster=[]
     set_of_mir_sequence= []
     
@@ -465,7 +473,7 @@ if __name__ == '__main__':
     latex_output_miranda_header()
     
     for x, mir in zip(xrange(0, len(list_of_cluster)), set_of_mir ):
-        print "x", x
+        #print "x", x
         sequence=list_of_cluster[x]
         fichier=open("output_for_miranda.txt", "w")
         fichier.write(">cluster_of_seed \n")
@@ -478,7 +486,7 @@ if __name__ == '__main__':
         list_of_dictionnary=miranda_score_reader("output_miranda")
         best_alignement=selecting_best_hit_score(list_of_dictionnary, number_of_best_hits=3)
         latex_output_miranda(best_alignement, mir)
-        print best_alignement
+        #print best_alignement
 
     
     latex_report_pdf()
