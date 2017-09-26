@@ -1,5 +1,4 @@
 import os
-import re
 
 #this set of function are used to calculate the minimum free energy structure of several circular RNA outputed by the circularRNA
 #design script, and  select the circular RNA with the less Minimum Free Energy structure,
