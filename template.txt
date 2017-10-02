@@ -181,8 +181,9 @@ While no significant statistical differences was found for outer distance compar
 	
 	The following rules are the one used by the circular RNA design script to write the sequence of a microRNA's binding site on the circular RNA :
 	\begin{itemize}
-		\item a A is systematically put in first position of the binding site \cite{Aanchor}. 
-		\item the seed (2-8nt) is a build by inserting complementary nucleotide to the microRNAs', forming an 8-mer site. See \cite{Urich, site} for further details and representation.
+		\item a A is systematically put in first position (in 5') of the microRNA's binding site. There is an overrepresentation of conserved adenosines flanking the seed complementary sites\cite{Aanchor}, among other data suggesting that a site with a A in first position outperform the others one, including the one with a complementary nucleotide to the microRNAs\cite{Urich}. 
+		\item the seed (from the 2nd to the 8th nt) is build by inserting complementary nucleotides to the microRNAs' ones, forming a "8-mer" site. See \cite{Urich, site} for further details and representation.
+		\item a A is put in the ninth position \cite{Aanchor}.
 		\item a A is put in the ninth position \cite{Aanchor}.
 		\item the 12th from 10th nucleotides are not complementary to the microRNAs' in order to avoid any Ago2 mediated cleavage of the circular RNA. This nucleotide are U, or A if not possible.
 		\item the nucleotides from 13 to 16 (include, so four in total) are complementary to the \-microRNAs'.
