@@ -164,10 +164,12 @@
 	\startcontents[chapters]
 	\printmyminitoc %print minitoc
 	
-	\section{Distance of collaboration}
+	\section{Distance of cooperativity}
 
-	There is experimental evidences of microRNA cooperativity in the post-transcriptional repression of the gene expression level when their seeds are in close proximity [13-35 nt] \cite{distance}. The design of the seed use by default the 17 nt distance, since the 13 nts distance, even if sufficient to enhance the repression, was less effective than the 17 nt distance. No significant statistical differences was found for outer distance compare to the 17 nt distance. However, this distance use by the script is adjustable in the eventuality of new scientific evidences, using the -d option.
-	
+		There is experimental evidences for microRNAs cooperativity in the post-transcriptional repression they exert, provided that their seeds regions are in close proximity [13-35 nucleotides(nt) between the two seed] \cite{distance}. \\ 
+Considering this, the script design by default the circular RNA sponge with a distance of 17 nt between every seeds, since the experiences shown in the article \cite{distance} demonstrated that a distance of 13 nt was less effective than a distance of 17 nt to enhance the repression of the gene expression level. \\
+While no significant statistical differences was found for outer distance compare to the 17 nt distance, the distance use by the script is adjustable in the eventuality of new scientific evidences, using the -d option.
+
 	\section{U-rich design}
 
     The micro-RNA binding site with hight local content of A and U perform the best, over any other variable or predicator \cite{Urich}. This is probably correlated to binding site accessibility, and to take advantage of this feature, and to reduce the potential to form a self-interacting secondary structure on the localisation of the microRNA binding site. A cognate problem is that some protein target and bind some AU rich sequence [known as AREs] \cite{AREs}, however, since this sequences require some A \cite{AREs}, the safer option is to specify a U in the sequence when no specific other nucleotides for complementarity is required.
