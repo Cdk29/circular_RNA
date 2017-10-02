@@ -176,9 +176,10 @@ While no significant statistical differences was found for outer distance compar
 
 	\section{Binding site}
 
-	The design of the binding site rely on features which algorithms of microRNAs binding site prediction are looking for in sequences and highlight as biologically relevant. For example, Target Scan reward a A on the first position for scoring a potential microRNAs binding site \cite{Aanchor}.
+	The design of the microRNA' binding sites use the same features that the algorithms of microRNAs binding site prediction rely on. This features are presumably biologically relevant.\\
+	 For example, Target Scan reward a A on the first position for scoring a potential microRNA's binding site\cite{Aanchor}, since this feature is evolutionary conserved among functionnal microRNA's binding site. This feature is used by the circular RNA design script to construct the binding sites, by putting a A in first position.
 	
-	The rules used by the circular RNA design script to design a binding site are the following :
+	The following rules are the one used by the circular RNA design script to write the sequence of a microRNA's binding site :
 	\begin{itemize}
 		\item a A is systematically put in first position of the binding site \cite{Aanchor}. 
 		\item the seed (2-8nt) is a build by inserting complementary nucleotide to the microRNAs', forming an 8-mer site. See \cite{Urich, site} for further details and representation.
