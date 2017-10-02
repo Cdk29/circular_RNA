@@ -145,7 +145,7 @@
 		\begin{minipage}{0.60\linewidth}
 			\vspace{5pt}
 			\begin{abstract} 
-				Circular RNAs have been proved to be a large class of post-transcriptional regulators, decoying microRNAs from their original targets \cite{mir7}. This documents is a output report of a script designing such a circular sponge against microRNAs passed as arguments, the goal being to use this circular sponge to upregulate genes originally targeted by those \-microRNAs. This script is the final step of a workflow relying on the TriplexRNA database \cite{triplex} to identified those microRNAs to be targeted, but can be also used alone.
+				CCircular RNAs have been proved to be a large class of post-transcriptional regulators, decoying microRNAs from their original mRNA targets, among other regulatories functions \cite{mir7}. This documents is a automatic report made by the script circular\_RNA\_design.py. This script is meant to design such a circular sponge against various microRNAs, passed as arguments. The aim of this sponge is to upregulate the expression of the genes for which the level of expression is regulated by those \-microRNAs. While this script is the final step of a workflow relying on the TriplexRNA database \cite{triplex} to select the microRNAs to be targeted, he can also be used alone.
 				
 				
 			\end{abstract}
