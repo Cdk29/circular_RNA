@@ -17,9 +17,9 @@ The script design a circular microRNAs sponge based on microRNAs names passed as
 
 The script design a circular RNA to sponge one or several microRNAs which names are passed as input. It takes as input :
 
-- a file  contening the names of the microRNAs that the user want the sponge to decoy (mandatory). The names have to be the same as in the triplexRNA database. This file is a txt file with just the name of the microRNAs, one per line.
+- a file  containing the names of the microRNAs that the user want the sponge to decoy (mandatory). The names have to be the same as in the triplexRNA database. This file is a txt file with just the name of the microRNAs, one per line.
 
-- a file contenining a priorities for each microRNAs (mandatory). Basically, the script build the sponge in a recursive way, and add as many binding site as the priority number allocated to each microRNA on each recursion. For example, for a sponge with twice the number of binding site for one microRNAs compare to the other, the file will contain the integer 2 and 1. This file is a txt file with just one integer per line, and have to be in the same order than the microRNAs they refer to.
+- a file containining a priorities for each microRNAs (mandatory). Basically, the script build the sponge in a recursive way, and add as many binding site as the priority number allocated to each microRNA on each recursion. For example, for a sponge with twice the number of binding site for one microRNAs compare to the other, the file will contain the integer 2 and 1. This file is a txt file with just one integer per line, and have to be in the same order than the microRNAs they refer to.
 
 - a distance of cooperativity (optionnal), passed as argument in command line. This distance, as define in Saetrom et al (2007), between microRNAs target sites dictate the cooperativity in the microRNAs binding to the sponge. Default cooperativity distance : 17.
 
