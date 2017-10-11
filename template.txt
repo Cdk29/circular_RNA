@@ -183,11 +183,11 @@ While no significant statistical differences was found for outer distance compar
 	\begin{itemize}
 		\item a A is systematically put in first position (in 5') of the microRNA's binding site. There is an overrepresentation of conserved adenosines flanking the seed complementary sites\cite{Aanchor}, among other data suggesting that a site with a A in first position outperform the others one, including the one with a complementary nucleotide to the microRNAs\cite{Urich}. 
 		\item the seed (from the 2nd to the 8th nt) is build by inserting complementary nucleotides to the microRNAs' ones, forming a "8-mer" site. See \cite{Urich, site} for further details and representation.
-		\item a A is put in the ninth position \cite{Aanchor}.
-		\item a A is put in the ninth position \cite{Aanchor}.
-		\item the 12th from 10th nucleotides are not complementary to the microRNAs' in order to avoid any Ago2 mediated cleavage of the circular RNA. This nucleotide are U, or A if not possible.
-		\item the nucleotides from 13 to 16 (include, so four in total) are complementary to the \-microRNAs'.
-		The reason is that Watson-Crick pairing to four contiguous nucleotides produce pairing in 3' and that most downregulation is associated to this pairing if it start at the 13th position \cite{site}.
+	\item a A is put in the ninth position of the binding site, because there is an overrepresentation of conserved adenosines flanking the seed complementary sites\cite{Aanchor}, and because the microRNAs binding sites which perform the best are the ones with a local hight content of Adenine (A) and Uracile (U), over any other variable or predicator \cite{Urich}.
+
+	\item the 12th from 10th nucleotides are not complementary to the microRNAs', and U and A if possible. The aim is to avoid any Ago2 mediated cleavage of the circular RNA, cleavage which occur in case of near perfect complementarity between the microRNA sequence and the binding site \cite{cancer}. This nucleotide are U, or A if not possible.
+
+	\item the nucleotides from 13 to 16 (included, so four in total) are complementary to the \-microRNAs' one. The reason is that Watson-Crick pairing to four contiguous nucleotides produce an additionnal pairing in 3'\cite{site} and that most downregulation is associated to this additionnal pairing if it start at the 13th position \cite{site}.
 		
 	\end{itemize}
 
