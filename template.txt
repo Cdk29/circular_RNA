@@ -192,6 +192,13 @@ While no significant statistical differences was found for outer distance compar
 	\end{itemize}
 
 	\section{Clusters}
+
+\begin{figure}[H]
+	\centering
+	{\includegraphics[width=1\textwidth]{circular1(1).jpeg}}
+	\caption{Schema of the circular RNA's construction. During the recursive call, the function add on each cluster of microRNA' binding site, as many binding site as the priority number for this microRNA, until the limit size is about to be exceeded. Please take note that the addition of the binding sites is done in a iterative way.}
+\end{figure}
+
 	The binding sites for one microRNA are organized in cluster by the design script, considering the observation that Ago2 shuttles between adjacent target and then that neighboring sites could cooperate to retain the Ago2-miRNA complex. \cite{cluster}.
 	
 	The cluster are wrote from 3' to 5' to make comparaision with microRNAs sequence easier. The clusters are the following :
