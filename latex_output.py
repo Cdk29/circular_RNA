@@ -175,7 +175,7 @@ def latex_report_pdf():
     tex_file = "design_report.tex"
     bib_file = "bibliography.bib"
     image_file = "circular1(1).jpeg"   
-
+    image_file2= "Blank.png"
     fichier=open(tex_file, "a")
     fichier.write(string)
     fichier.close()
@@ -186,6 +186,7 @@ def latex_report_pdf():
     z.write(tex_file)
     z.write(bib_file)
     z.write(image_file)
+    z.write(image_file2)
     z.close()
     
     print (tmp)
