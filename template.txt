@@ -145,10 +145,8 @@
 		\begin{minipage}{0.60\linewidth}
 			\vspace{5pt}
 			\begin{abstract} 
-				Circular RNAs have been proved to be a large class of post-transcriptional regulators, decoying microRNAs from their original mRNA targets, among other regulatory functions \cite{mir7}. This documents is a automatic report made by the script circular\_RNA\_design.py. This script is meant to design such a circular sponge against various microRNAs, passed as arguments. The aim of this sponge is to upregulate the expression of the genes for which the level of expression is regulated by those \-microRNAs. While this script is the final step of a workflow relying on the TriplexRNA database \cite{triplex} to select the microRNAs to be targeted, he can also be used alone.
-				
-				
-			\end{abstract}
+				Circular RNAs have been proved to be a large class of post-transcriptional regulators, decoying microRNAs from their original mRNA targets, among other regulatory functions\cite{mir7}. This documents is a automatic report made by the script circular\_RNA\_design.py. This script is meant to design such a circular sponge against various microRNAs, passed as arguments. The aim of this sponge is to promote the expression of the genes for which the level of expression is regulated by those \-microRNAs. This script is the final step of a workflow relying on the TriplexRNA database\cite{triplex}.
+				\end{abstract}
 		\end{minipage}
 	\end{titlepage}
 	
@@ -163,35 +161,65 @@
 	\chapter{Some details about the design}
 	\startcontents[chapters]
 	\printmyminitoc %print minitoc
+\section{Query made by the Circular RNA design script}	
+	\begin{figure}[H]
+		\centering
+		{\includegraphics[width=1\textwidth]{Blank.png}}
+		\caption{Details of the request done by the circular RNA design script.}
+	\end{figure}
+	
+The script first query the triplexRNA database, using the provided names to get the mimat IDs which identify this microRNA in the database. This ID is then used to query Mirbase, to get the sequence of the microRNA. \\
+
+There is several reasons to this. First of all, while the sequences of the microRNAs are encode inside the triplexRNA database, the orientation of the strand is not indicate (5' and 3' extremity), and this step is then a security control, assuring that the sequence of the microRNA is in the right orientation.\\
+
+Also, the name of some microRNAs can be different between Mirbase and the triplexRNA, depending on their respective update. For example, most of the microRNAs have the mention 5p or 3p in their name, indicating from which part of the hairpin they come from, a mention sometimes absent from the name inside the triplexRNA database. This step is then a disambiguation phase. 	
+	
 	
 	\section{Distance of cooperativity}
 
 		There is experimental evidences for microRNAs cooperativity in the post-transcriptional repression they exert, provided that their seeds regions are in close proximity [13-35 nucleotides(nt) between the two seed] \cite{distance}. \\ 
+		
 Considering this, the script design by default the circular RNA sponge with a distance of 17 nt between every seeds, since the experiences shown in the article \cite{distance} demonstrated that a distance of 13 nt was less effective than a distance of 17 nt to enhance the repression of the gene expression level. \\
+
 While no significant statistical differences was found for outer distance compare to the 17 nt distance, the distance use by the script is adjustable in the eventuality of new scientific evidences, using the -d option.
 
-	\section{U-rich design}
-
-        The microRNAs binding sites which perform the best are the ones with a local hight content of Adenine (A) and Uracile (U), over any other variable or predicator \cite{Urich}. This is probably correlated to binding site accessibility, and a low potential of forming a self-interacting secondary structure \cite{Urich}. \\ To take advantage of this two features, in order to improve the efficiency of the circular RNA sponge, the script design the sponge's sequence with as many U and A as possible. \\ That means that, outside the seed region, where a strict complementarity is required, or in the additional 3' pairing region (cf below), the sequence is write with U or A. \\ A cognate problem is that some proteins target and bind some AU rich sequences, known as AREs \cite{AREs}. However, since this AREs sequences contain some A \cite{AREs}, the safest option is to specify a U prior to an A when writing the sponge's sequence, when no other specific nucleotides is required for complementarity between the sponge and the microRNA. 
 
 	\section{Binding site}
 
-	The design of the microRNA' binding sites use the same features that the algorithms of microRNAs binding site prediction rely on. This features are presumably biologically relevant.\\
-	 For example, Target Scan reward a A on the first position for scoring a potential microRNA's binding site\cite{Aanchor}, since this feature is evolutionary conserved among functionnal microRNA's binding site. This feature is used by the circular RNA design script to construct the binding sites, by putting a A in first position.
+Once the sequences of the microRNAs are obtained by the circular design script, it will use them to build the most efficient binding site possible for each of the microRNAs. Those binding sites, one per microRNAs, will be then repeat on the circular sponge, separated by nucleotides according to another parameter, the distance of cooperativity\cite{coop}. \\
+
+In order to do so, the design script is implemented with rules extract from the scientific literature :
+
+\begin{itemize}
+	\item a A is systematically put in first position (in 5') of the microRNA's binding site. There is an over-representation of conserved adenosine flanking the seed complementary sites\cite{Aanchor}, among other data suggesting that a site with a A in first position outperform the others one, including the one with a complementary nucleotide to the microRNAs\cite{Urich}. 
 	
-	The following rules are the one used by the circular RNA design script to write the sequence of a microRNA's binding site on the circular RNA :
-	\begin{itemize}
-		\item a A is systematically put in first position (in 5') of the microRNA's binding site. There is an overrepresentation of conserved adenosines flanking the seed complementary sites\cite{Aanchor}, among other data suggesting that a site with a A in first position outperform the others one, including the one with a complementary nucleotide to the microRNAs\cite{Urich}. 
-		\item the seed (from the 2nd to the 8th nt) is build by inserting complementary nucleotides to the microRNAs' ones, forming a "8-mer" site. See \cite{Urich, site} for further details and representation.
-	\item a A is put in the ninth position of the binding site, because there is an overrepresentation of conserved adenosines flanking the seed complementary sites\cite{Aanchor}, and because the microRNAs binding sites which perform the best are the ones with a local hight content of Adenine (A) and Uracile (U), over any other variable or predicator \cite{Urich}.
-
+	\item the seed region (from the 2nd to the 8th nt, cf introduction) is build by inserting complementary nucleotides to the microRNAs' ones, forming a "8-mer" site. See \cite{Urich, site} for further details and representation.
+	
+	\item a A is put in the ninth position of the binding site, because there is an over-representation of conserved adenosine flanking the seed complementary sites\cite{Aanchor}, and because the microRNAs binding sites which perform the best are the ones with a local hight content of Adenine (A) and Uracile (U), over any other variable or predicator \cite{Urich}.
+	
 	\item the 12th from 10th nucleotides are not complementary to the microRNAs', and U and A if possible. The aim is to avoid any Ago2 mediated cleavage of the circular RNA, cleavage which occur in case of near perfect complementarity between the microRNA sequence and the binding site \cite{cancer}. This nucleotide are U, or A if not possible.
+	
+	\item the nucleotides from 13 to 16 (included, so four in total) are complementary to the \-microRNAs' one. The reason is that Watson-Crick pairing to four contiguous nucleotides produce an additional pairing in 3'\cite{site} and that most down-regulation is associated to this additional pairing if it start at the 13th position \cite{site}, additional down-regulation which can be translate as a stronger binding of the microRNA on the binding site\cite{site}.
+	
+\end{itemize}
 
-	\item the nucleotides from 13 to 16 (included, so four in total) are complementary to the \-microRNAs' one. The reason is that Watson-Crick pairing to four contiguous nucleotides produce an additionnal pairing in 3'\cite{site} and that most downregulation is associated to this additionnal pairing if it start at the 13th position \cite{site}.
-		
-	\end{itemize}
+	\section{U-rich design}
+	
+	As we just mentioned, the microRNAs binding sites which perform the best are the ones with a local hight content of A and U, over any other variable or predicator \cite{Urich}. \\
+	
+	This is probably correlated to binding site accessibility, and a low potential of forming a self-interacting secondary structure \cite{Urich}. \\
+	
+	To take advantage of this two features, in order to improve the efficiency of the circular RNA sponge, the script design the sponge's sequence with as many U and A as possible. \\ 
+	
+	That means that, outside the seed region, where a strict complementarity is required, and in the additional 3' pairing region (cf above), the sequence is write with U or A. \\
+	
+	A cognate problem is that some proteins target and bind some AU rich sequences, known as AREs\cite{AREs}. However, since this AREs sequences contain some A\cite{AREs}, the safest option is to specify a U prior to an A when writing the sponge's sequence, when no other specific nucleotides is required for complementarity between the sponge and the microRNA. \\
 
 	\section{Clusters}
+
+The binding sites for one microRNA are organized in cluster by the design script, considering the observation that Ago2 shuttles between adjacent target and then that neighboring sites could cooperate to retain the Ago2-miRNA complex.\cite{cluster}. \\
+
+During the recursive call, the design script build the clusters by adding as many binding site to the cluster as the priority number allocated to this microRNA. The recursive call is interrupt when the limit size (set by default to 300, but can be specified), is about to be exceeded by the addition of a new binding site.\\
 
 \begin{figure}[H]
 	\centering
@@ -199,6 +227,5 @@ While no significant statistical differences was found for outer distance compar
 	\caption{Schema of the circular RNA's construction. During the recursive call, the function add on each cluster of microRNA' binding site, as many binding site as the priority number for this microRNA, until the limit size is about to be exceeded. Please take note that the addition of the binding sites is done in a iterative way.}
 \end{figure}
 
-	The binding sites for one microRNA are organized in cluster by the design script, considering the observation that Ago2 shuttles between adjacent target and then that neighboring sites could cooperate to retain the Ago2-miRNA complex. \cite{cluster}.
 	
 	The cluster are wrote from 3' to 5' to make comparaision with microRNAs sequence easier. The clusters are the following :
